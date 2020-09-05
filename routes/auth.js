@@ -9,7 +9,7 @@ const {JWT_KEY}=require('../keys')
 const requireLogin=require('../middleware/is-auth')
 
 router.get('/verify',requireLogin,(req,res)=>{
-    res.send("hello")
+    res.status(404).send('hello');
 })
 
 router.post('/signup',(req,res)=>{

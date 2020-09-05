@@ -1,6 +1,7 @@
 const express=require('express')
 const app=express()
 const mongoose=require('mongoose')
+const morgan= require('morgan')
 require('./models/user')
 
 const {MONGODB_URL}=require('./keys')
@@ -12,6 +13,7 @@ mongoose.connection.on('connected',()=>{
 mongoose.connection.on('error',()=>{
     console.log('error while connecting')
 })
+app.use(morgan('dev'))
 app.use(express.json())
 app.use('/user',require('./routes/auth'))
 
