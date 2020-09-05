@@ -20,7 +20,6 @@ router.post('/createpost', requireLogin, (req, res) => {
     if (!title || !body) {
         return res.status(422).json({ error: "Please add all the fields" })
     }
-
     const post = new Post({
         title,
         body,
@@ -41,7 +40,7 @@ router.get('/mypost', requireLogin, (req, res) => {
             res.json({ mypost })
         })
         .catch(err => {
-            console.log(err)
+            res.json({error:err})
         })
 })
 

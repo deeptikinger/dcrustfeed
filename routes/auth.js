@@ -9,12 +9,6 @@ const { JWT_KEY } = require('../keys')
 const requireLogin = require('../middleware/is-auth')
 
 
-<<<<<<< HEAD
-router.get('/verify',requireLogin,(req,res)=>{
-    res.status(404).send('hello');
-})
-=======
->>>>>>> upstream/staging
 
 router.post('/signup', (req, res) => {
     const { name, email, password } = req.body
@@ -55,14 +49,14 @@ router.post('/login', (req, res) => {
     const { email, password } = req.body
     if (!email || !password) {
         return res.status(422).json({
-            error: "Please fill all details"
+            message: "Please fill all details"
         })
     }
 
     User.findOne({ email: email })
         .exec()
         .then(user => {
-            if (user.length < 1) {
+            if (!user) {
                 return res.status(404).json({
                     message: "Invalid Email or Password "
                 })
@@ -70,7 +64,7 @@ router.post('/login', (req, res) => {
             bcrypt.compare(password, user.password)
                 .then((doMatch) => {
                     if (!doMatch) {
-                        return res.status(200).json({
+                        return res.status(404).json({
                             message: "Invalid Email or Password"
                         })
                     } else {
@@ -79,9 +73,12 @@ router.post('/login', (req, res) => {
                         },
                             JWT_KEY
                         )
+                        const {_id,name,email}=user
                         return res.status(200).json({
-                            email: email,
-                            token: token
+                          token,
+                          user:{
+                            _id,name,email
+                          }
                         })
                     }
                 })
