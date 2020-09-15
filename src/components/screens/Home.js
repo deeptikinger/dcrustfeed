@@ -11,14 +11,15 @@ const Home = () => {
           res.json()
         })
         .then(result=>{
-            setData(result.posts)
+            console.log(result)
+            // setData(result.posts)
         })
     },[])
     return (
         <div className="home">
             {
                 data.map(item=>{
-                    return(
+                return(
                 <div className="card home-card" key={item._id}>
                <h5>{item.postedBy.name}</h5>
                <div className="card-image">

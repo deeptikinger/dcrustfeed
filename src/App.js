@@ -1,4 +1,4 @@
-import React, { useEffect, createContext, useContext } from 'react';
+import React, { useEffect, createContext, useContext,useReducer } from 'react';
 import NavBar from './components/Navbar'
 import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom'
 import Home from './components/screens/Home'
@@ -15,7 +15,7 @@ const Routing = () => {
   const history = useHistory();
   const { state, dispatch } = useContext(UserContext)
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user3"));
+    const user = JSON.parse(localStorage.getItem("user"));
 
     if (user) {
       dispatch({ type: "USER", payload: user })
@@ -23,8 +23,7 @@ const Routing = () => {
     } else {
       history.push('/login')
     }
-
-  })
+  },[])
   return (
     <Switch>
       <Route exact path="/">

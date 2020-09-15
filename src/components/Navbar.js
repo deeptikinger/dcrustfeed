@@ -4,7 +4,9 @@ import {UserContext} from '../App'
 const Navbar = () => {
     const {state,dispatch}=useContext(UserContext)
     const history=useHistory()
+    console.log(state)
     const renderList=()=>{
+        console.log(state)
         if(state){
         return [
             <li><Link to="/profile">Profile</Link></li>,

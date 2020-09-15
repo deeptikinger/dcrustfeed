@@ -30,7 +30,7 @@ const Login = () => {
                     localStorage.setItem("jwt", data.token)
                     localStorage.setItem("user", JSON.stringify(data.user))
 
-                    M.toast({ html: "Successfully SignedIn", classes: "#43a047 green darken-1" })
+                    M.toast({ html: "Successfully Login", classes: "#43a047 green darken-1" })
                     history.push('/')
                 }
             })
@@ -49,7 +49,7 @@ const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <input
-                    type="text"
+                    type="password"
                     placeholder="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
