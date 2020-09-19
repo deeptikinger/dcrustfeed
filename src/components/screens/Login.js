@@ -50,7 +50,7 @@ const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <input
-                    type="text"
+                    type="password"
                     placeholder="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -65,7 +65,7 @@ const Login = () => {
 
             </div>
         </div>
-    )
+    );
 }
 
 export default Login;

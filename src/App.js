@@ -1,4 +1,6 @@
+
 import React, { useEffect, createContext, useReducer, useContext } from 'react';
+
 import NavBar from './components/Navbar'
 import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom'
 import Home from './components/screens/Home'
@@ -15,7 +17,7 @@ const Routing = () => {
   const history = useHistory();
   const { state, dispatch } = useContext(UserContext)
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user3"));
+    const user = JSON.parse(localStorage.getItem("user"));
 
     if (user) {
       dispatch({ type: "USER", payload: user })
@@ -23,8 +25,10 @@ const Routing = () => {
     } else {
       history.push('/login')
     }
-
   }, [])
+  //=======
+  // },[])
+  //>>>>>>> 2754182e3cea5abd6c86330723160276d194de63
   return (
     <Switch>
       <Route exact path="/">
