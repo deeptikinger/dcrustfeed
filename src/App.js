@@ -1,4 +1,4 @@
-import React, { useEffect, createContext, useContext } from 'react';
+import React, { useEffect, createContext, useReducer, useContext } from 'react';
 import NavBar from './components/Navbar'
 import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom'
 import Home from './components/screens/Home'
@@ -24,7 +24,7 @@ const Routing = () => {
       history.push('/login')
     }
 
-  })
+  }, [])
   return (
     <Switch>
       <Route exact path="/">
