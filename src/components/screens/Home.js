@@ -2,17 +2,15 @@ import React, { useState, useEffect } from 'react'
 const Home = () => {
     const [data, setData] = useState([])
     useEffect(() => {
-        fetch('/allpost', {
+        fetch('http://localhost:5000/post/allpost', {
+            method:"GET",
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("jwt")
             }
         })
-            .then((res) => {
-                res.json()
-            })
+            .then((res) =>res.json())
             .then(result => {
-                console.log(result)
-                // setData(result.posts)
+                setData(result.posts)
             })
     }, [])
     return (

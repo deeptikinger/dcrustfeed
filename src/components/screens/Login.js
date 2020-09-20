@@ -13,6 +13,7 @@ const Login = () => {
             M.toast({ html: "Invalid email", classes: "#c62828 red darken-3" })
             return
         }
+
         fetch("http://localhost:5000/user/login", {
             method: "post",
             headers: {
@@ -31,7 +32,7 @@ const Login = () => {
                     localStorage.setItem("jwt", data.token)
                     localStorage.setItem("user", JSON.stringify(data.user))
                     dispatch({ type: "USER", payload: data.user })
-                    M.toast({ html: "Successfully SignedIn", classes: "#43a047 green darken-1" })
+                    M.toast({ html: "Successfully Login", classes: "#43a047 green darken-1" })
                     history.push('/')
                 }
             })

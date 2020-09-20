@@ -21,14 +21,12 @@ const Routing = () => {
 
     if (user) {
       dispatch({ type: "USER", payload: user })
-      history.push('/')
+      // history.push('/')
     } else {
       history.push('/login')
     }
   }, [])
-  //=======
-  // },[])
-  //>>>>>>> 2754182e3cea5abd6c86330723160276d194de63
+  
   return (
     <Switch>
       <Route exact path="/">

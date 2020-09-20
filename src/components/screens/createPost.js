@@ -9,7 +9,7 @@ const createPost = () => {
     const [url, setUrl] = useState("");
     useEffect(() => {
         if (url) {
-            fetch("http://localhost:5000/user/login", {
+            fetch("http://localhost:5000/post/createpost", {
                 method: "post",
                 headers: {
                     "Content-Type": "application/json",
@@ -23,6 +23,8 @@ const createPost = () => {
             })
                 .then(res => res.json())
                 .then(data => {
+                    console.log(body)
+                    console.log(data)
                     if (data.message) {
                         M.toast({ html: data.message, classes: "#c62828 red darken-3" })
                     } else {
@@ -52,7 +54,6 @@ const createPost = () => {
             .catch(err => {
                 console.log(err)
             })
-
 
     }
     return (
