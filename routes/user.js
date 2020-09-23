@@ -5,7 +5,7 @@ const requireLogin = require('../middleware/is-auth')
 const Post = mongoose.model("Post")
 const User = mongoose.model("User")
 
-router.get('/client /:id', requireLogin, (req, res) => {
+router.get('/:id', requireLogin, (req, res) => {
     User.findOne({ _id: req.params.id })
         .select("-password")
         .then(user => {
@@ -22,7 +22,7 @@ router.get('/client /:id', requireLogin, (req, res) => {
         })
 })
 
-router.put('follow', (req, res) => {
+router.put('/follow', (req, res) => {
     User.findByIdAndUpdate(req.body.followId, {
         $push: { followers: req.user._id }
     }, {
@@ -43,7 +43,7 @@ router.put('follow', (req, res) => {
 })
 
 
-router.put('unfollow', (req, res) => {
+router.put('/unfollow', (req, res) => {
     User.findByIdAndUpdate(req.body.unfollowId, {
         $pull: { followers: req.user._id }
     }, {

@@ -29,7 +29,7 @@ app.use(express.json())
 app.use(morgan('dev'))
 app.use('/user', require('./routes/auth'))
 app.use('/post', require('./routes/post'))
-app.use('/client', require('./routes/client'))
+app.use('/client', require('./routes/user'))
 app.listen(5000, () => {
     console.log("server is running")
 })
