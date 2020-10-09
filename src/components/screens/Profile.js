@@ -9,6 +9,7 @@ const Profile = () => {
     fetch('http://localhost:5000/post/mypost',{
       method:"GET",
       headers:{
+        
         "Authorization": "Bearer "+localStorage.getItem("jwt")
       }
     })
@@ -35,9 +36,9 @@ const Profile = () => {
           <div> 
            <h4>{state?state.name:"loading"}</h4>
             <div style={{display:"flex",justifyContent:"space-between",width:"108%"}}>
-            <h6>40 posts</h6>
-            <h6>40 following</h6>
-            <h6>40 followers</h6>
+            <h6>{mypics.length}</h6>
+            <h6>{state?state.followers.length:0}</h6>
+            <h6>{state?state.following.length:0}</h6>
             </div>
         </div>
        </div>
