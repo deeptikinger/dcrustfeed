@@ -73,11 +73,11 @@ router.post('/login', (req, res) => {
                         },
                             JWT_KEY
                         )
-                        const {_id,name,email}=user
+                        const {_id,name,email,followers,following}=user
                         return res.status(200).json({
                           token,
                           user:{
-                            _id,name,email
+                            _id,name,email,followers,following
                           }
                         })
                     }
