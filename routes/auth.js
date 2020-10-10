@@ -7,9 +7,17 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { JWT_KEY } = require('../config/keys')
 const requireLogin = require('../middleware/is-auth')
+const nodemailer = require('nodemailer')
+const sendgridTransport = require('nodemailer-sendgrid-transport')
 
+//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
 
+const transport = nodemailer.createTransport(sendgridTransport({
+    auth: {
+        api_key: "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"
 
+    }
+}))
 router.post('/signup', (req, res) => {
     const { name, email, password, pic } = req.body
     if (!name || !email || !password) {
@@ -36,6 +44,12 @@ router.post('/signup', (req, res) => {
                     return user.save()
                 })
                 .then(user => {
+                    transport.sendMail({
+                        to: user.email,
+                        from: "no-reply@dcrustm.org"
+                        subject: "signup success",
+                        html: "<h1>Welcome to dcrustfeed</h1>"
+                    })
                     res.status(200).json({
                         message: "user created"
                     })
