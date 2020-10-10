@@ -5,13 +5,13 @@ const User = require('../models/user')
 const { json } = require('express')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const { JWT_KEY } = require('../keys')
+const { JWT_KEY } = require('../config/keys')
 const requireLogin = require('../middleware/is-auth')
 
 
 
 router.post('/signup', (req, res) => {
-    const { name, email, password } = req.body
+    const { name, email, password, pic } = req.body
     if (!name || !email || !password) {
         return res.status(422).json({
             error: "Please fill all details"
@@ -30,7 +30,8 @@ router.post('/signup', (req, res) => {
                     const user = new User({
                         email: email,
                         name: name,
-                        password: hashPassword
+                        password: hashPassword,
+                        pic: pic
                     })
                     return user.save()
                 })
@@ -73,12 +74,12 @@ router.post('/login', (req, res) => {
                         },
                             JWT_KEY
                         )
-                        const {_id,name,email,followers,following}=user
+                        const { _id, name, email, followers, following, pic } = user
                         return res.status(200).json({
-                          token,
-                          user:{
-                            _id,name,email,followers,following
-                          }
+                            token,
+                            user: {
+                                _id, name, email, followers, following, pic
+                            }
                         })
                     }
                 })
