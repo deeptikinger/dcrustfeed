@@ -46,7 +46,7 @@ router.post('/signup', (req, res) => {
                 .then(user => {
                     transport.sendMail({
                         to: user.email,
-                        from: "no-reply@dcrustm.org"
+                        from: "no-reply@dcrustm.org",
                         subject: "signup success",
                         html: "<h1>Welcome to dcrustfeed</h1>"
                     })

@@ -14,7 +14,7 @@ const Login = () => {
             return
         }
 
-        fetch("http://localhost:5000/user/login", {
+        fetch("/user/login", {
             method: "post",
             headers: {
                 "Content-Type": "application/json"

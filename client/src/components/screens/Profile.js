@@ -9,7 +9,7 @@ const Profile = () => {
 
   console.log(state)
   useEffect(() => {
-    fetch('http://localhost:5000/post/mypost', {
+    fetch('/post/mypost', {
       method: "GET",
       headers: {
         "Authorization": "Bearer " + localStorage.getItem("jwt")
@@ -25,7 +25,7 @@ const Profile = () => {
     
     useEffect(()=>{
       if(image){
-                  const data = new FormData()
+        const data = new FormData()
         data.append("file", image)
         data.append("upload_preset", "dcrustFeed")
         data.append("cloud_name", "dwf4l1tyy")
@@ -38,7 +38,7 @@ const Profile = () => {
                 
                 // localStorage.setItem("user",JSON.stringify({...state,pic:data.url}))
                 // dispatch({type:"UPDATEPIC",payload:data.url})
-                fetch('http://localhost:5000/client/updatepic',{
+                fetch('/client/updatepic',{
                   method:"put",
                   headers:{
                     "Content-Type":"application/json",
@@ -83,19 +83,19 @@ const Profile = () => {
           <h4>{state ? state.name : "loading"}</h4>
           <h5>{state ? state.email : "loading"}</h5>
           <div style={{ display: "flex", justifyContent: "space-between", width: "108%" }}>
-            <h6>40 posts</h6>
-            <h6>40 following</h6>
-            <h6>40 followers</h6>
+            <h6>{mypics.length} posts</h6>
+            <h6>{state?state.followers.length:0} followers</h6>
+            <h6>{state?state.following.length:0} following</h6>
           </div>
         </div>
       </div>
-       <button className="btn waves-effect waves-light #ef5350 red lighten-1"
+       {/* <button className="btn waves-effect waves-light #ef5350 red lighten-1"
               style={{margin:"10px 0px 10px 52px"}}  
               onclick={()=>{
                updatePhoto();
               }}   
                 >Upload Pic
-                </button>
+                </button> */}
                   <div className="file-field input-field" style={{margin:"10px"}}>
                 <div className="btn #ef5350 red lighten-1">
                     <span>Update Profile Photo</span>
