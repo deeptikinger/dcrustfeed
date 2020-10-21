@@ -1,6 +1,6 @@
 
 import React, { useEffect, createContext, useReducer, useContext } from 'react';
-
+import ResetPassword from './components/screens/reset'
 import NavBar from './components/Navbar'
 import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom'
 import Home from './components/screens/Home'
@@ -11,6 +11,7 @@ import CreatePost from './components/screens/createPost'
 import "./App.css";
 import { reducer, initialState } from './reducers/userReducer'
 import UserProfile from './components/screens/UserProfile'
+import NewPassword from './components/screens/Newpassword'
 import SubscribedUser from './components/screens/SubscribedUser'
 export const UserContext = createContext()
 
@@ -24,6 +25,7 @@ const Routing = () => {
       dispatch({ type: "USER", payload: user })
       // history.push('/')
     } else {
+      if(!history.location.pathname.startsWith('/reset'))
       history.push('/login')
     }
   }, [])
@@ -50,6 +52,12 @@ const Routing = () => {
         </Route>
         <Route path="/myfollowingpost">
         <SubscribedUser />
+      </Route>
+      <Route  exact path="/reset-password">
+        <ResetPassword />
+      </Route>
+      <Route path="/reset-password/:token">
+        <NewPassword />
       </Route>
     </Switch>
   )

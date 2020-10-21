@@ -1,27 +1,25 @@
 import React, { useState, useContext } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory , useParams } from 'react-router-dom'
 import M, { toast } from 'materialize-css'
 import { UserContext } from '../../App'
-const Login = () => {
-    const { state, dispatch } = useContext(UserContext)
+const NewPassword = () => {
     const history = useHistory()
-    const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
+    const {token} =useParams()
     const PostData = () => {
         if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
             M.toast({ html: "Invalid email", classes: "#c62828 red darken-3" })
             return
         }
 
-        fetch("/user/login", {
+        fetch("/user/new-password", {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 password,
-                email
+                token
             })
         })
             .then(res => res.json())
@@ -29,11 +27,8 @@ const Login = () => {
                 if (data.error) {
                     M.toast({ html: data.error, classes: "#c62828 red darken-3" })
                 } else {
-                    localStorage.setItem("jwt", data.token)
-                    localStorage.setItem("user", JSON.stringify(data.user))
-                    dispatch({ type: "USER", payload: data.user })
-                    M.toast({ html: "Successfully Login", classes: "#43a047 green darken-1" })
-                    history.push('/')
+                    M.toast({ html: data.message, classes: "#43a047 green darken-1" })
+                    history.push('/user/login')
                 }
             })
             .catch(err => {
@@ -44,31 +39,21 @@ const Login = () => {
         <div className="myCard">
             <div className="card auth-card input-field">
                 <h2>DCRUSTFEED</h2>
-                <input
-                    type="text"
-                    placeholder="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+
                 <input
                     type="password"
-                    placeholder="password"
+                    placeholder="enter new password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <button className="btn waves-effect waves-light #ef5350 red lighten-1"
                     onClick={() => PostData()}
-                >Login
+                > Update password
                 </button>
-                <h5>
-                    <Link to="/signup">Don't have an account?</Link>
-                </h5>
-                <h6>
-                    <Link to="/reset-password">Forgot password ?</Link>
-                </h6>
+    
             </div>
         </div>
     );
 }
 
-export default Login;
+export default NewPassword;
