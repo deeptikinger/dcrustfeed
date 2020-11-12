@@ -34,14 +34,20 @@ const Signup = () => {
     }
     
     const uploadFields = () => {
-         if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
-            M.toast({ html: "Invalid email", classes: "#c62828 red darken-3" })
+        //  if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
+        //     M.toast({ html: "Invalid email", classes: "#c62828 red darken-3" })
+        //     return
+        // }
+        // "^[a-zA-Z0-9_.+-]+@[dcrust]+\.[org]+$"
+        if (!/[a-zA-Z0-9_.+-]+@[dcrustm]+\.[org]+$/.test(email)) {
+            M.toast({ html: "Only dcrust users are allowed to access", classes: "#c62828 red darken-3" })
             return
         }
         fetch("/user/signup", {
             method: "post",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                'Accept': 'application/json'
             },
             body: JSON.stringify({
                 name,

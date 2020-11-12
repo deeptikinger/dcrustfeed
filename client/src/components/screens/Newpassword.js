@@ -4,11 +4,12 @@ import M, { toast } from 'materialize-css'
 import { UserContext } from '../../App'
 const NewPassword = () => {
     const history = useHistory()
+    const[email,setEmail]=useState("")
     const [password, setPassword] = useState("")
     const {token} =useParams()
     const PostData = () => {
-        if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
-            M.toast({ html: "Invalid email", classes: "#c62828 red darken-3" })
+        if (!/[a-zA-Z0-9_.+-]+@[dcrustm]+\.[org]+$/.test(email)) {
+            M.toast({ html: "Only dcrust users are allowed to access", classes: "#c62828 red darken-3" })
             return
         }
 

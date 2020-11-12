@@ -11,14 +11,16 @@ const requireLogin = require('../middleware/is-auth')
 const nodemailer = require('nodemailer')
 const sendgridTransport = require('nodemailer-sendgrid-transport')
 
-//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
+// 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
+
 
 const transport = nodemailer.createTransport(sendgridTransport({
     auth: {
-        api_key:"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"
+        api_key:"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"
 
     }
 }))
+
 router.post('/signup', (req, res) => {
     const { name, email, password, pic } = req.body
     if (!name || !email || !password) {
@@ -42,9 +44,9 @@ router.post('/signup', (req, res) => {
                         password: hashPassword,
                         pic: pic
                     })
-                    return user.save()
-                })
+             user.save()
                 .then(user => {
+                    console.log(user.email)
                     transport.sendMail({
                         to: user.email,
                         from: "no-reply@dcrustm.org",
@@ -55,6 +57,7 @@ router.post('/signup', (req, res) => {
                         message: "user created"
                     })
                 })
+            })
                 .catch(err => {
                     console.log(err)
                 })
@@ -125,7 +128,7 @@ router.post("/reset-password",(req,res)=>{
                 subject:"password-reset",
                 html :`
                 <p>You are requested to reset the password </p>
-                <h5> click on this <a href:"http://localhost:5000/reset-password/${token}">link</a> to reset password</h5>
+                <h5> click on this <a href:"http://localhost:6000/auth/reset-password/${token}">link</a> to reset password</h5>
                 `
             })
             res.json({message:"check your email"})
@@ -135,7 +138,7 @@ router.post("/reset-password",(req,res)=>{
 })
 
 router.post('/new-password',(req,res)=>{
-    const newPassword=req.body.password,
+    const newPassword=req.body.password
     const token = req.body.token
     User.findOne({resetToken:token,expireToken:{$gt:Date.now()}})
     .then((user)=>{

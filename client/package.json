@@ -1,6 +1,7 @@
 {
   "name": "burger-builder-starting-setup",
   "version": "0.1.0",
+  "proxy": "http://localhost:6000/",
   "private": true,
   "dependencies": {
     "materialize-css": "^1.0.0-rc.2",

@@ -32,7 +32,7 @@ const Home = () => {
             .then(result => {
                 // console.log(result)
                 const newData = data.map(item => {
-                    if (item._id == result._id) {
+                    if (item._id === result._id) {
                         return result
                     } else {
                         return item
@@ -87,7 +87,7 @@ const Home = () => {
             .then(result => {
                 console.log(result)
                 const newData = data.map(item => {
-                    if (item._id == result._id) {
+                    if (item._id === result._id) {
                         return result
                     } else {
                         return item
@@ -146,7 +146,7 @@ const Home = () => {
                                 {
                                     item.comments.map(record => {
                                         return (
-                                            <h6 key={record._id}><span style={{ fontWeight: "500",fontStyle:"bold" }}>{record.postedBy.name}</span>{record.text}</h6>
+                                            <h6 key={record._id}><span style={{ fontWeight: "500",fontStyle:"bold" }}>{record.postedBy.name}  </span>{record.text}</h6>
                                         )
                                     })
                                 }
