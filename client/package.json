@@ -1,7 +1,8 @@
 {
-  "name": "burger-builder-starting-setup",
+  "name": "dcrust-starting-setup",
   "version": "0.1.0",
   "private": true,
+  "proxy":"http://localhost:5000",
   "dependencies": {
     "materialize-css": "^1.0.0-rc.2",
     "react": "^16.11.0",

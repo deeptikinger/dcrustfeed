@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT ||5000
 const { MONGODB_URL } = require('./config/keys')
 const morgan = require('morgan')
 
@@ -13,16 +13,16 @@ mongoose.connection.on('connected', () => {
 mongoose.connection.on('error', (err) => {
     console.log('error while connecting', err)
 })
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*')
-    res.header('Access-Control-Allow-Headers',
-        'Origin,X-Requested-With,Content-Type,Accept,Authorization')
-    if (req.method === 'OPTIONS') {
-        res.header('Access-Control-Allow-Methods', 'POST,GET,PUT,DELETE')
-        return res.status(200).json({})
-    }
-    next()
-})
+// app.use((req, res, next) => {
+//     res.header('Access-Control-Allow-Origin', '*')
+//     res.header('Access-Control-Allow-Headers',
+//         'Origin,X-Requested-With,Content-Type,Accept,Authorization')
+//     if (req.method === 'OPTIONS') {
+//         res.header('Access-Control-Allow-Methods', 'POST,GET,PUT,DELETE')
+//         return res.status(200).json({})
+//     }
+//     next()
+// })
 require('./models/user')
 require('./models/post')
 
