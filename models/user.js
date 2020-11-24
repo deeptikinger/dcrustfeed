@@ -15,8 +15,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+<<<<<<< HEAD
     resetToken : String,
     expireToken : Date,
+=======
+    resetToken:String,
+    expireToken:Date,
+>>>>>>> staging
     pic: {
         type: String,
         default: "https://res.cloudinary.com/dwf4l1tyy/image/upload/v1602306589/Sketchpad_aggxsz.png"

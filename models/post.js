@@ -25,7 +25,12 @@ const postSchema = new mongoose.Schema({
     postedBy: {
         type: ObjectId,
         ref: "User"
+<<<<<<< HEAD
       }
     },{timestamps:true})
+=======
+    }
+},{timestamps:true})
+>>>>>>> staging
 
 mongoose.model("Post", postSchema);

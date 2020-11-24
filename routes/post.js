@@ -5,7 +5,6 @@ const requireLogin = require('../middleware/is-auth')
 const Post = mongoose.model("Post")
 
 router.get('/allpost', requireLogin, (req, res) => {
-
     Post.find()
         .populate("postedBy", "_id name")
         .populate("comments.postedBy", "_id name")
@@ -67,16 +66,16 @@ router.get('/mypost', requireLogin, (req, res) => {
 })
 
 
-router.delete('/delete/:postId', (req, res) => {
-    Post.findOneAndDelete({ _id: req.params.postId })
-        .then(res => {
-            console.log(res)
-            res.json({ message: "Deleted" })
-        })
-        .catch(err => {
-            res.json({ error: err })
-        })
-})
+// router.delete('/delete/:postId', (req, res) => {
+//     Post.findOneAndDelete({ _id: req.params.postId })
+//         .then(res => {
+//             console.log(res)
+//             res.json({ message: "Deleted" })
+//         })
+//         .catch(err => {
+//             res.json({ error: err })
+//         })
+// })
 
 router.put('/like', requireLogin, (req, res) => {
     Post.findByIdAndUpdate(req.body.postId, {

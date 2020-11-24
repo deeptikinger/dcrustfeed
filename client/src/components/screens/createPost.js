@@ -23,8 +23,6 @@ const createPost = () => {
             })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(body)
-                    console.log(data)
                     if (data.message) {
                         M.toast({ html: data.message, classes: "#c62828 red darken-3" })
                     } else {

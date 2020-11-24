@@ -46,7 +46,7 @@ const Home = () => {
     }
 
     const unlikePost = (id) => {
-        fetch('/post/unlike', {
+        fetch('post/unlike', {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -121,8 +121,9 @@ const Home = () => {
                     return (
                         <div className="card home-card" key={item._id}>
                             <h5 style={{padding:"5px"}}><Link to={item.postedBy._id !== state._id ? "/profile/" + item.postedBy._id : "/profile"}>{item.postedBy.name}</Link>{item.postedBy._id == state._id
-                                && <i className="material-icons" style={{
-                                    float: "right"
+                                && <i className="material-icons" 
+                                style={{
+                                    float:"right"
                                 }}
                                     onClick={() => deletePost(item._id)}
                                 >delete</i>
@@ -146,7 +147,7 @@ const Home = () => {
                                 {
                                     item.comments.map(record => {
                                         return (
-                                            <h6 key={record._id}><span style={{ fontWeight: "500",fontStyle:"bold" }}>{record.postedBy.name}  </span>{record.text}</h6>
+                                        <h6 key={record._id}><span style={{ fontWeight:'bold' }}>{record.postedBy.name}{":"}</span>{record.text}</h6>
                                         )
                                     })
                                 }
