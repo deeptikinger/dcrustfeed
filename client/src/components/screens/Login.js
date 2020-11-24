@@ -11,10 +11,8 @@ const Login = () => {
     const PostData = () => {
         if (!/[a-zA-Z0-9._%+-]+@dcrustm.org/.test(email)) {
             M.toast({ html: "Only dcrust members are allowed", classes: "#c62828 red darken-3" })
-            return
+            return;
         }
-        
-
         fetch("/user/login", {
             method: "post",
             headers: {

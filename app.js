@@ -1,11 +1,7 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
-<<<<<<< HEAD
-const PORT = process.env.PORT || 6000
-=======
 const PORT = process.env.PORT ||5000
->>>>>>> staging
 const { MONGODB_URL } = require('./config/keys')
 const morgan = require('morgan')
 
