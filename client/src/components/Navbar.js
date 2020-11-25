@@ -19,7 +19,7 @@ const Navbar = () => {
                 <li><Link to="/profile"> Profile</Link></li>,
                 <li><Link to="/createpost">Create Post</Link></li>,
                 <li><Link to="/myfollowingpost">My Following Posts</Link></li>,
-                <li><button className="btn waves-effect waves-light #ef5350 red lighten-1"
+                <button className="btn waves-effect waves-light #ef5350 red lighten-1"
                     onClick={() => {
                         localStorage.clear()
                         dispatch({ type: "CLEAR" })
@@ -28,7 +28,6 @@ const Navbar = () => {
                     }
                 >Logout
             </button>
-            </li>
             ]
         } else {
             return [
